@@ -134,8 +134,12 @@ class AppsFlyerDestination extends DestinationPlugin {
     });
   }
 
-  Future<String>? getUserId() async {
-    return await appsFlyer!.getCustomerUserId();
+  Future<String?> getUserId() async {
+    if (hasInitialized) {
+      return await appsFlyer!.getAppsFlyerUID();
+    } else {
+      return null;
+    }
   }
 
   void registerDeepLinkCallback() {

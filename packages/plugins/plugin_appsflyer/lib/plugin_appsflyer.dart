@@ -2,11 +2,11 @@ library analytics_plugin_appsflyer;
 
 import 'dart:convert';
 
+import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:segment_analytics/analytics.dart';
 import 'package:segment_analytics/plugin.dart';
 import 'package:segment_analytics_plugin_appsflyer/types.dart';
 import 'package:segment_analytics_plugin_appsflyer/utils.dart';
-import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 
 class AppsFlyerDestination extends DestinationPlugin {
   AppsFlyerDestination() : super("AppsFlyer");
@@ -132,6 +132,10 @@ class AppsFlyerDestination extends DestinationPlugin {
         }
       }
     });
+  }
+
+  Future<String>? getUserId() async {
+    return await appsFlyer!.getCustomerUserId();
   }
 
   void registerDeepLinkCallback() {
